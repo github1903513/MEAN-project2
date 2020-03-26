@@ -7,6 +7,7 @@ app.use(bodyParser.json());
 // set the view engine to ejs
 app.set("view engine", "ejs");
 app.locals.pretty = true;
+const PORT = process.env.PORT || 5000;
 
 //show frontpage
 //app.use(express.static("demosite/"));
@@ -20,41 +21,11 @@ app.get("/guestbook", function(req, res) {
   var data = require("./message.json");
   //res.send(data);
   res.render("pages/guestbook", { users: data });
-  /*var results =
-    '<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">';
-  results += '<style type="text/css">{display:inline-block;}</style>';
-  results +=
-    '<div class="pure-menu pure-menu-horizontal pure-menu-scrollable"><ul class="pure-menu-list"><li><a href="/" class="pure-menu-link">HomePage</a></li><li><a href="#" class="pure-menu-link">Guestbook</a></li><li><a href="/newmessage" class="pure-menu-link">newmessage</a></li><li><a href="/ajaxmessage" class="pure-menu-link">ajaxmessage</a></li></ul></div>';
-  results +=
-    '<div><table class="pure-table pure-table-horizontal" border="0"><tr><th>#</th><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>';
-  for (var i = 0; i < data.length; i++) {
-    results +=
-      "<tr>" +
-      "<td>" +
-      data[i].id +
-      "</td>" +
-      "<td>" +
-      data[i].username +
-      "</td>" +
-      "<td>" +
-      data[i].country +
-      "</td>" +
-      "<td>" +
-      data[i].date +
-      "</td>" +
-      "<td>" +
-      data[i].message +
-      "</td>" +
-      "</tr>";
-  }
-  results += "</div>";
-  res.send(results);*/
 });
 
 //add newmessage to the json file
 app.get("/newmessage", function(req, res) {
-  res.sendFile(__dirname + "/newmessage.html");
-
+  res.render("pages/newmessage");
   app.post("/newmessage", function(req, res) {
     var data = require("./message.json");
 
@@ -124,4 +95,5 @@ app.get("*", function(req, res) {
   res.send("can't find the requested page!", 404);
 });
 
-app.listen(8081);
+//app.listen(8081);
+app.listen(PORT);
