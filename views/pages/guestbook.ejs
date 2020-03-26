@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>New message</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <ul class="pure-menu-list">
+      <li class="pure-menu-item">
+        <a href="/" class="pure-menu-link">HomePage</a>
+      </li>
+      <li class="pure-menu-item">Guestbook</li>
+      <li class="pure-menu-item">
+        <a href="/newmessage" class="pure-menu-link">newmessage</a>
+      </li>
+      <li class="pure-menu-item">
+        <a href="/ajaxmessage" class="pure-menu-link">ajaxmessage</a>
+      </li>
+    </ul>
+  </div>
+  <br />
+  <br />
+
+  <div>
+    <table class="pure-table pure-table-horizontal" border="0">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Date</th>
+        <th>Message</th>
+      </tr>
+      <% users.forEach(function(user){ %>
+      <tr>
+        <td><% user.id %></td>
+        <td><% user.username %></td>
+        <td><% user.country %></td>
+        <td><% user.date %></td>
+        <td><% user.message %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+
+  <!--footer-->
+  <%- include('../partials/footer') %>
+</html>

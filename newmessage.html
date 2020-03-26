@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>New message</title>
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+</head>
+
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="/" class="pure-menu-link">HomePage</a></li>
+        <li class="pure-menu-item"><a href="/guestbook" class="pure-menu-link">Guestbook</a></li>
+        <li class="pure-menu-item">newmessage</li>
+        <li class="pure-menu-item"><a href="/ajaxmessage" class="pure-menu-link">ajaxmessage</a></li>
+        
+    </ul>
+</div>
+<br>
+<br>
+
+<div >
+<form class="pure-form" class="pure-u-1-2" method="post" action="/newmessage">
+    <legend>P1: Guestbook application</legend>
+    <fieldset class="pure-group">
+        <input type="text" class="pure-input-1-2" placeholder="username" id="username" name="username">
+        <input type="text" class="pure-input-1-2" placeholder="country" id="country" name="country">
+        <input type="text" class="pure-input-1-2" placeholder="message"id="message" name="message" size="50">
+    </fieldset>
+
+
+    <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Send</button>
+</form>
+</div>
+</body>
+</html>

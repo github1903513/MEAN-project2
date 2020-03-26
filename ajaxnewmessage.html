@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>New message</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <style>
+    div {
+      margin: 10px;
+    }
+
+    form {
+      border: 1px solid lightgrey;
+      padding: 10px;
+    }
+  </style>
+
+  <body>
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+          <a href="/" class="pure-menu-link">HomePage</a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="/guestbook" class="pure-menu-link">Guestbook</a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="/newmessage" class="pure-menu-link">newmessage</a>
+        </li>
+        <li class="pure-menu-item">
+          ajaxmessage
+        </li>
+      </ul>
+    </div>
+    <br />
+    <br />
+
+    <div>
+      <form
+        class="pure-form"
+        class="pure-u-1-2"
+        method="POST"
+        action="/ajaxmessage"
+      >
+        <legend>P1: Guestbook application</legend>
+        <fieldset class="pure-group">
+          <input
+            type="text"
+            class="pure-input-1-2"
+            placeholder="username"
+            id="username"
+            name="username"
+          />
+          <input
+            type="text"
+            class="pure-input-1-2"
+            placeholder="country"
+            id="country"
+            name="country"
+          />
+          <input
+            type="text"
+            class="pure-input-1-2"
+            placeholder="message"
+            id="message"
+            name="message"
+            size="50"
+          />
+        </fieldset>
+
+        <button
+          type="button"
+          id="button1"
+          class="pure-button pure-input-1-2 pure-button-primary"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+    <!---show items here -->
+    <div id="status"></div>
+
+    <script>
+      // Varmistetaan että sivu on ladattu kokonaan ennenkuin lisäillään kuuntelijoita
+      window.onload = event => {
+        //   console.log("page is fully loaded");
+
+        var nappi = document.getElementById("button1");
+
+        nappi.addEventListener("click", () => {
+          var username = document.getElementById("username").value;
+          var country = document.getElementById("country").value;
+          var date = new Date();
+          var message = document.getElementById("message").value;
+
+          console.log(username, country);
+
+          // Luodaan AJAX olio joka palauttaa vastauksensa status-kenttään
+
+          var xmlhttp = new XMLHttpRequest();
+
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("status").innerHTML = this.responseText;
+              console.log(this.responseText);
+            }
+          };
+          // Lähetetään AJAX pyyntö, tyyppiä POST osoitteeseen /
+
+          xmlhttp.open("POST", "/ajaxmessage", true);
+          // This is for the form data
+          xmlhttp.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+          );
+          xmlhttp.send(
+            "username=" +
+              username +
+              "&country=" +
+              country +
+              "&message=" +
+              message
+          );
+        });
+      };
+    </script>
+  </body>
+</html>
